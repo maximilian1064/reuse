@@ -1,4 +1,5 @@
 #CFLAGS=-g -O0
+CC=icc
 CFLAGS=-O3 -fopenmp -march=native
 
 all: distgen

@@ -22,6 +22,8 @@
 #include <sys/time.h>
 #include <signal.h>
 
+#include <sched.h>
+
 #ifdef _OPENMP
 #include <omp.h>
 #endif
@@ -480,6 +482,9 @@ int main(int argc, char* argv[])
     u64 idxMax = blocks * BLOCKLEN/sizeof(struct entry);
     u64 idxIncr = blockDiff * BLOCKLEN/sizeof(struct entry);
 
+    // print mem-thread-cpu binding
+    printf("Initialization: Buffer[%d]: T%d, CPU%d\n", t, omp_get_thread_num(), sched_getcpu()); 
+
     // allocate and initialize used memory
     buffer[t] = (struct entry*) memalign(64, blocks * BLOCKLEN);
     buf = buffer[t];
@@ -532,6 +537,9 @@ int main(int argc, char* argv[])
     for(t=0; t<tcount; t++) {
       double tsum = 0.0;
       u64 taCount = 0;
+
+      // print mem-thread-cpu binding
+      printf("Operation: Buffer[%d]: T%d, CPU%d\n", t, omp_get_thread_num(), sched_getcpu()); 
 
       iiDone = runBench(buffer[t], iiTodo, blocks, blockDiff,
                         depChain, doWrite, &tsum, &taCount);
