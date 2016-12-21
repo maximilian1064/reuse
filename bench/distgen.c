@@ -483,7 +483,7 @@ int main(int argc, char* argv[])
     u64 idxIncr = blockDiff * BLOCKLEN/sizeof(struct entry);
 
     // print mem-thread-cpu binding
-    printf("Initialization: Buffer[%d]: T%d, CPU%d\n", t, omp_get_thread_num(), sched_getcpu()); 
+    printf("Initialization: Buffer[%d]: T%d, CPU%d, NUMA node%d\n", t, omp_get_thread_num(), sched_getcpu(), (sched_getcpu()/16)%4); 
 
     // allocate and initialize used memory
     buffer[t] = (struct entry*) memalign(64, blocks * BLOCKLEN);
@@ -539,7 +539,7 @@ int main(int argc, char* argv[])
       u64 taCount = 0;
 
       // print mem-thread-cpu binding
-      printf("Operation: Buffer[%d]: T%d, CPU%d\n", t, omp_get_thread_num(), sched_getcpu()); 
+      printf("Operation: Buffer[%d]: T%d, CPU%d, NUMA node%d\n", t, omp_get_thread_num(), sched_getcpu(), (sched_getcpu()/16)%4); 
 
       iiDone = runBench(buffer[t], iiTodo, blocks, blockDiff,
                         depChain, doWrite, &tsum, &taCount);
