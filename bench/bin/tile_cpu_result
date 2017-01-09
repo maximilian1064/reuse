@@ -1,0 +1,25 @@
+Do 2000 iters, 16 thr(s) [16.0 M] (total 256.0 MB) ...
+Summary: throughput 512.000 GB in 4.690 s (per core: 32.000 GB)
+         bandwidth  109.177 GB/s (per core: 6.824 GB/s)
+         GFlop/s      1.706 GF/s (per core: 0.107 GF/s)
+         per acc.     9.379 ns   (22.5 cycles @ 2.40 GHz)
+Do 2000 iters, 16 thr(s) [16.0 M] (total 256.0 MB) ...
+Summary: throughput 512.000 GB in 6.637 s (per core: 32.000 GB)
+         bandwidth   77.145 GB/s (per core: 4.822 GB/s)
+         GFlop/s      1.205 GF/s (per core: 0.075 GF/s)
+         per acc.    13.274 ns   (31.9 cycles @ 2.40 GHz)
+Do 2000 iters, 16 thr(s) [16.0 M] (total 256.0 MB) ...
+Summary: throughput 512.000 GB in 10.733 s (per core: 32.000 GB)
+         bandwidth   47.703 GB/s (per core: 2.981 GB/s)
+         GFlop/s      0.745 GF/s (per core: 0.047 GF/s)
+         per acc.    21.466 ns   (51.5 cycles @ 2.40 GHz)
+Do 2000 iters, 16 thr(s) [16.0 M] (total 256.0 MB) ...
+Summary: throughput 512.000 GB in 19.052 s (per core: 32.000 GB)
+         bandwidth   26.873 GB/s (per core: 1.680 GB/s)
+         GFlop/s      0.420 GF/s (per core: 0.026 GF/s)
+         per acc.    38.105 ns   (91.5 cycles @ 2.40 GHz)
+Do 2000 iters, 16 thr(s) [16.0 M] (total 256.0 MB) ...
+Summary: throughput 512.000 GB in 9.968 s (per core: 32.000 GB)
+         bandwidth   51.365 GB/s (per core: 3.210 GB/s)
+         GFlop/s      0.803 GF/s (per core: 0.050 GF/s)
+         per acc.    19.936 ns   (47.8 cycles @ 2.40 GHz)
