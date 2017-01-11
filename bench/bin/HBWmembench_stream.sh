@@ -16,31 +16,24 @@ fi
 
 
 # result file
-if [ -z "${4}" ]; then
+if [ -z "${3}" ]; then
     resultSTREAM="result_STREAM_`date +%m-%d-%Y-%H-%M-%S`"
 else
-    resultRead=${4}
-fi
-
-#def. 16m 
-if [ -z "${2}" ]; then
-    ArraySize=16
-else
-    ArraySize=${2}
+    resultRead=${3}
 fi
 
 #def. 1 
-if [ -z "${3}" ]; then
+if [ -z "${2}" ]; then
     SampleNum=1
 else
-    SampleNum=${3}
+    SampleNum=${2}
 fi
 
 
 # OPTIONS FOR SINGLE BENCHMARK SET
 
 
-ThreadNum="1 2 4 8 16 32 64 128 255"
+ThreadNum="1 2 4 8 16 32 64 128 255 256"
 
 #def. 2000
 if [ -z "${1}" ]; then
@@ -69,15 +62,12 @@ fi
 for TNum in ${ThreadNum}
 do
     echo -e "--------------------------TNum:${TNum}-------------------------\n" >>${resultSTREAM}
+    icc -O3 -openmp -DNTIMES=${IterNum} -DSTREAM_ARRAY_SIZE=67108864 STREAM/stream.c -o stream_c
+
+    export OMP_NUM_THREADS=${TNum}
     export KMP_AFFINITY=proclist=[`./proclist_generator ${TNum}`],explicit
-    #for dist in ${distance}
-    #do
-    #apply runtime options
-    icc -O2 -openmp -DNTIMES=${IterNum} -DSTREAM_ARRAY_SIZE=$((${TNum}*${ArraySize}*1000000)) STREAM/stream.c -o stream_c
-    #echo -e "--------------------------TNum:${TNum},Dist:${dist}--------------------------\n" >>${resultSTREAM}
     for((i=1; i<=${SampleNum}; i=i+1))
     do
         ${enableHbw} ./stream_c >>${resultSTREAM}
     done
-    #done
 done
