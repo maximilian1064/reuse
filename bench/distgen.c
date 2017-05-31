@@ -22,10 +22,18 @@
 #include <sys/time.h>
 #include <signal.h>
 
+#ifdef HBW
+#include "../../HermitHBWwork/hbwmalloc-hermit/hbwmalloc.h"
+#define memalign hbw_memalign
+#define malloc hbw_malloc
+#define calloc hbw_calloc
+#define free hbw_free
+#endif
+
+
 #ifdef _OPENMP
 #include <omp.h>
 #endif
-
 
 #define VERSION "0.2"
 #define MAXDISTCOUNT 32
