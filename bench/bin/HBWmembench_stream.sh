@@ -62,7 +62,7 @@ fi
 for TNum in ${ThreadNum}
 do
     echo -e "--------------------------TNum:${TNum}-------------------------\n" >>${resultSTREAM}
-    icc -O3 -openmp -DNTIMES=${IterNum} -DSTREAM_ARRAY_SIZE=67108864 STREAM/stream.c -o stream_c
+    icc -xHost -O3 -openmp -DNTIMES=${IterNum} -DSTREAM_ARRAY_SIZE=67108864 STREAM/stream.c -o stream_c
 
     export OMP_NUM_THREADS=${TNum}
     export KMP_AFFINITY=proclist=[`./proclist_generator ${TNum}`],explicit
