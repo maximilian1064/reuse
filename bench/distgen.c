@@ -23,11 +23,12 @@
 #include <signal.h>
 
 #ifdef HBW
-#include "../../HermitHBWwork/hbwmalloc-hermit/hbwmalloc.h"
+#include "hbwmalloc.h"
 #define memalign hbw_memalign
 #define malloc hbw_malloc
 #define calloc hbw_calloc
 #define free hbw_free
+#define mallopt hbw_mallopt
 #endif
 
 
@@ -430,6 +431,9 @@ static void siginfo_handler (int sig)
 
 int main(int argc, char* argv[])
 {
+
+  mallopt(M_TRIM_THRESHOLD, 1024*1024*1024);  
+
   int i, j, k, d;
   int ii, iiTodo, iiDone;
   u64 aCount = 0, aCount1;
