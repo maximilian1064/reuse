@@ -1,6 +1,6 @@
 #CFLAGS=-g -O0
 CC=icc
-CFLAGS=-O3 -openmp
+CFLAGS=-O3 -openmp -xHost -march=native -mtune=native
 
 all: distgen
 
