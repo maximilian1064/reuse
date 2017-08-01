@@ -1,0 +1,9 @@
+1.  Please check the CFLAGS to see if I missing some optimization flags
+2.  The header hbwmalloc.h is already included in the source tree, only the LIBFLAGS
+    in the Makefile needs to be changed.
+3.  A script for the benchmarking are available, but missing the environment variables
+    for running HermitCore applications, please add them in the script, then run it,
+    that's all. Results will be stored in the files specified in the script. 
+4.  All tests running 64 threads (avaliable number of cores on single KNL numa node).
+5.  Target distgen-hbw is for test of hbw bandwith on HermitCore
+    Target distgen-ddr is for test of ddr bandwidth on HermitCore
